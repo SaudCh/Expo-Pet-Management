@@ -1,34 +1,39 @@
-import Shop from '../Screens/Shop';
-import Details from '../Screens/Details';
-import AddCard from '../Screens/AddCard';
-import ConfirmOrder from '../Screens/ConfirmOrder';
-import Filter from '../Screens/Filter';
-import OrderComplete from '../Screens/OrderComplete';
-import AddItem from '../Screens/AddItem';
-import Comunity from '../Screens/Comunity';
-import Profile from '../Screens/Profile';
-import PetHistory from '../Screens/PetHistory';
-import AppSubmit from '../Screens/AppSubmit';
-import Login from '../Screens/Login';
-import Register from '../Screens/Register';
-import VerifyEmail from '../Screens/VerifyEmail';
-import RegisterNext from '../Screens/RegisterNext';
-import AppSubmitted from '../Screens/AppSubmitted';
-import AddAnimal from '../Screens/AddAnimal';
-import PetDetails from '../Screens/Home';
+import { useContext } from 'react';
 
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Feather from 'react-native-vector-icons/Feather';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { useContext } from 'react';
-import { AuthContext } from './AuthContext';
-import OrderHistory from '../Screens/OrderHistory';
-import WishList from '../Screens/WishList';
-import Cart from '../Screens/Cart';
+import Login from '../Screens/Auth/Login';
+import Register from '../Screens/Auth/Register';
+import VerifyEmail from '../Screens/Auth/VerifyEmail';
+
+import Shop from '../Screens/Shop/Shop';
+import Details from '../Screens/Shop/Details';
+import Filter from '../Screens/Shop/Filter';
+
+import Pets from '../Screens/Pet/Pets';
+// import AddPet from '../Screens/Pet/AddPets';
+import AddPet from '../Screens/Pet/AddPet';
+import PetDetails from '../Screens/Pet/Details';
+
+import Comunity from '../Screens/Community/Comunity';
+
+import WishList from '../Screens/Profile/WishList';
+
+import Cart from '../Screens/Cart/Cart';
+import Checkout from '../Screens/Cart/Checkout';
+import ConfirmOrder from '../Screens/Order/ConfirmOrder';
+
+import Profile from '../Screens/Profile/Profile';
+import OrderHistory from '../Screens/Profile/OrderHistory';
+
+
+import { AuthContext } from '../Components/Context/AuthContext';
+import Pay from '../Screens/Order/Pay';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -44,59 +49,17 @@ export default function HomeStack() {
                     headerTintColor: 'purple'
                 }}>
 
-                {/* <Stack.Screen
-                    name="Login"
-                    component={Login}
-                    initialParams={{ userid: 'rimsha' }}
-                    options={{ title: 'Login' }}
-                /> */}
-
-                <Stack.Screen
-                    name="AppSubmitted"
-                    component={AppSubmitted}
-                    options={{ title: 'AppSubmitted', headerShown: false }}
-                />
-
                 <Stack.Screen
                     name="Home"
                     component={TabBar}
                     options={{ title: 'Home', headerShown: false }}
                 />
 
-                <Stack.Screen
-                    name="OrderHistory"
-                    component={OrderHistory}
-                    options={{ title: 'Order History' }}
-                />
-
-                <Stack.Screen
-                    name="PetDetails"
-                    component={PetDetails}
-                    options={{ title: 'Shop', headerShown: false }}
-                />
-
-
+                {/* Shop */}
                 <Stack.Screen
                     name="Details"
                     component={Details}
                     options={{ title: 'Details', headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name="AddAnimal"
-                    component={AddAnimal}
-                    options={{ title: 'Register', headerShown: false }}
-                />
-                <Stack.Screen
-                    name="AddCard"
-                    component={AddCard}
-                    options={{ title: 'AddCard', headerShown: false }}
-                />
-
-                <Stack.Screen
-                    name="ConfirmOrder"
-                    component={ConfirmOrder}
-                    options={{ title: 'ConfirmOrder', headerShown: false }}
                 />
 
                 <Stack.Screen
@@ -106,38 +69,55 @@ export default function HomeStack() {
                 />
 
                 <Stack.Screen
-                    name="PetHistory"
-                    component={PetHistory}
-                    options={{ title: 'PetHistory' }}
+                    name="Cart"
+                    component={Cart}
+                    options={{ title: 'Cart' }}
                 />
 
                 <Stack.Screen
-                    name="OrderComplete"
-                    component={OrderComplete}
-                    options={{ title: 'OrderComplete', headerShown: false }}
+                    name="Checkout"
+                    component={Checkout}
+                    options={{ title: 'Checkout' }}
                 />
 
                 <Stack.Screen
-                    name="RegisterNext"
-                    component={RegisterNext}
+                    name="Pay"
+                    component={Pay}
+                    options={{ title: 'Payment', }}
+                />
+
+                {/* Pet */}
+                <Stack.Screen
+                    name="PetDetails"
+                    component={PetDetails}
+                    options={{ title: 'Shop', headerShown: false }}
+                />
+
+                <Stack.Screen
+                    name="AddPet"
+                    component={AddPet}
                     options={{ title: 'Add Pet' }}
                 />
 
                 <Stack.Screen
-                    name="AppSubmit"
-                    component={AppSubmit}
-                    options={{ title: 'AppSubmit', headerShown: false }}
+                    name="ConfirmOrder"
+                    component={ConfirmOrder}
+                    options={{ title: 'ConfirmOrder' }}
                 />
+
+                {/* Profile */}
+                <Stack.Screen
+                    name="OrderHistory"
+                    component={OrderHistory}
+                    options={{ title: 'Order History' }}
+                />
+
                 <Stack.Screen
                     name="WishList"
                     component={WishList}
                     options={{ title: 'Wish List' }}
                 />
-                <Stack.Screen
-                    name="Cart"
-                    component={Cart}
-                    options={{ title: 'Cart' }}
-                />
+
             </Stack.Navigator>
         );
     } else {
@@ -176,8 +156,8 @@ function TabBar() {
     return (
         <Tab.Navigator barStyle={{ backgroundColor: 'white' }} activeColor="white">
             <Tab.Screen
-                name="AddItem"
-                component={AddItem}
+                name="Pets"
+                component={Pets}
                 options={{
                     tabBarIcon: ({ color, size }) => (
                         <MaterialCommunityIcons name="home" color={'grey'} size={24} />

@@ -3,16 +3,12 @@ import {
   View,
   Text,
   TouchableOpacity,
-  Platform,
-  TextInput,
   Image,
-  ScrollView,
-  ScrollViewBase,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import { FlatList } from 'react-native-gesture-handler';
-import { AuthContext } from '../Components/AuthContext';
+import { AuthContext } from '../../Components/Context/AuthContext';
 import { Button } from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 
@@ -59,7 +55,7 @@ function AddItem({ navigation }) {
             marginBottom: 10
           }}>
           <Image
-            source={require('../Images/pet_hub.png')}
+            source={require('../../Images/pet_hub.png')}
             resizeMode="stretch"
             style={{ height: 50, width: 150, alignSelf: 'center' }}
           />
@@ -126,7 +122,7 @@ function AddItem({ navigation }) {
 
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate('RegisterNext');
+            navigation.navigate('AddPet');
           }
           }
         >

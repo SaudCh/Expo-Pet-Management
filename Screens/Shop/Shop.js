@@ -12,6 +12,7 @@ let width = Dimensions.get('screen').width / 2 - 8
 import React, { useState, useEffect } from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'axios';
+import { HeaderLogo } from '../../Components/Logo';
 const Shop = ({ navigation }) => {
     const [Products, setProducts] = useState([]);
     useEffect(() => {
@@ -27,45 +28,12 @@ const Shop = ({ navigation }) => {
                 console.log(err);
             });
     };
-    const [close, setClose] = React.useState(false);
-    const [list, setList] = useState([]);
-
-    useEffect(() => {
-        getList();
-    }, [])
-
-    const getList = async () => {
-        await axios.get("shop/showAllProducts").then((res) => {
-            var response = res.data;
-            setList(response.products)
-        }).catch((err) => {
-            console.log(err);
-        })
-
-    }
-
-    const [images, setimages] = useState([
-        require('../Images/tom.png'),
-        require('../Images/tom.png'),
-        require('../Images/tom.png'),
-        require('../Images/tom.png'),
-        require('../Images/tom.png'),
-        require('../Images/tom.png'),
-        require('../Images/tom.png'),
-        require('../Images/tom.png')
-    ]);
-
-
-
 
     return (
         <SafeAreaView style={{ flex: 1, paddingTop: 37 }}>
             <View style={{ flex: 1 }}>
                 <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}>
-                    <Image
-                        source={require("../Images/pet_hub.png")}
-                        resizeMode='stretch'
-                        style={{ height: 50, width: 100, alignSelf: 'center' }} />
+                    <HeaderLogo />
                 </View>
                 <View style={{ marginBottom: 10, flexDirection: 'row', justifyContent: 'flex-end', alignSelf: 'flex-end' }}>
                     <TouchableOpacity onPress={() => { navigation.navigate("Filter") }} style={{ marginStart: 10 }}>
@@ -75,7 +43,6 @@ const Shop = ({ navigation }) => {
 
 
                     <TouchableOpacity style={{ marginStart: 10 }}>
-
                         <AntDesign name="search1" color={'grey'} size={24} />
                     </TouchableOpacity>
 
@@ -83,9 +50,7 @@ const Shop = ({ navigation }) => {
                     <TouchableOpacity style={{ marginStart: 10, marginEnd: 10 }}
                         onPress={() => { navigation.navigate("Cart") }}
                     >
-
                         <AntDesign name="shoppingcart" color={'grey'} size={24} />
-
                     </TouchableOpacity>
 
                 </View>

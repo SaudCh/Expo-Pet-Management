@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "bus-management",
+    "name": "pethub",
     "slug": "my-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "scheme": "com.myapp.busmanagement",
+    "scheme": "com.myapp.pethub",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",

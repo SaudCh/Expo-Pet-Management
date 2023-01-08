@@ -1,15 +1,17 @@
-import { NavigationContainer } from '@react-navigation/native';
 import React from 'react';
-import axios from 'axios';
-import { AuthContext } from './Components/AuthContext';
-import { useAuth } from './Components/useAuth';
-import HomeStack from './Components/Navigator';
 import { Provider as PaperProvider } from 'react-native-paper';
-import { WishlistContext } from './Components/WishlistContext';
-import { useWishList } from './Components/useWishList';
-import { useCart } from './Components/useCart';
-import { CartContext } from './Components/CartContext';
+import { NavigationContainer } from '@react-navigation/native';
+import axios from 'axios';
 
+import HomeStack from './Navigator/Navigator';
+
+import { AuthContext } from './Components/Context/AuthContext';
+import { WishlistContext } from './Components/Context/WishlistContext';
+import { CartContext } from './Components/Context/CartContext';
+
+import { useAuth } from './Components/Hooks/useAuth';
+import { useWishList } from './Components/Hooks/useWishList';
+import { useCart } from './Components/Hooks/useCart';
 
 console.disableYellowBox = true;
 
@@ -22,15 +24,13 @@ function App() {
       return response;
     }
     , (error) => {
-
       throw error;
-
     }
 
   );
 
   const { Login, Logout, user } = useAuth();
-  const { cart, cartId, addToCart, removeFromCart, emptyCart, changeQuantity, getCart } = useCart()
+  const { cart, cartId, addToCart, removeFromCart, emptyCart, changeQuantity, getCart, total } = useCart()
   const {
     wishList,
     addToWishlist,
@@ -63,7 +63,8 @@ function App() {
             removeFromCart,
             emptyCart,
             changeQuantity,
-            getCart
+            getCart,
+            total
           }}
         >
           <PaperProvider>

@@ -1,8 +1,8 @@
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native'
 import React, { useContext, useEffect } from 'react'
 import axios from 'axios'
-import { AuthContext } from '../Components/AuthContext'
-import { WishlistContext } from '../Components/WishlistContext'
+import { AuthContext } from '../../Components/Context/AuthContext'
+import { WishlistContext } from '../../Components/Context/WishlistContext'
 import { Button } from 'react-native-paper'
 
 export default function OrderHistory() {

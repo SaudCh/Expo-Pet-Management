@@ -7,10 +7,18 @@ export const useWishList = () => {
         pet: [],
     })
 
-    const addToWishlist = (product, cat) => {
+    const addToWishlist = async (product, cat, user) => {
         if (cat === 'shop') {
             const newWishlist = [...wishList.shop, product]
             setWishlist({ ...wishList, shop: newWishlist })
+
+            console.log(product._id)
+
+            await axios.post('shop/wish', { _id: product._id, userId: user }).then(res => {
+                console.log(res.data)
+            }).catch(err => {
+                console.log(err)
+            })
 
         } else {
             const newWishlist = [...wishList.pet, product]
@@ -19,10 +27,17 @@ export const useWishList = () => {
 
     }
 
-    const removeFromWishlist = (product, cat) => {
+    const removeFromWishlist = (product, cat, user) => {
         if (cat === 'shop') {
             const newWishlist = wishList.shop.filter((item) => item._id !== product._id)
             setWishlist({ ...wishList, shop: newWishlist })
+
+            axios.post('shop/wish', { _id: product._id, userId: user }).then(res => {
+                console.log(res.data)
+            }).catch(err => {
+                console.log(err)
+            })
+
         } else {
             const newWishlist = wishList.pet.filter((item) => item._id !== product._id)
             setWishlist({ ...wishList, pet: newWishlist })

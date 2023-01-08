@@ -226,7 +226,7 @@ function PetDetails({ navigation, route }) {
 
 
                         <Image
-                            source={require("../Images/pet_hub.png")}
+                            source={require("../../Images/pet_hub.png")}
                             resizeMode='stretch'
                             style={{ height: 50, width: 100, alignSelf: 'center' }} />
 
@@ -238,7 +238,7 @@ function PetDetails({ navigation, route }) {
                     <View style={{ width: '100%', height: 100, marginTop: 10, justifyContent: 'center', backgroundColor: '#d6d4d4' }}>
 
                         <Image
-                            source={require("../Images/pet_hub.png")}
+                            source={require("../../Images/pet_hub.png")}
                             resizeMode='center'
                             style={{ height: 80, width: "100%", alignSelf: 'center' }} />
 
@@ -304,7 +304,7 @@ function PetDetails({ navigation, route }) {
                             style={{ alignSelf: 'center', }}>
 
                             <Image
-                                source={require("../Images/injection.png")}
+                                source={require("../../Images/injection.png")}
                                 resizeMode='center'
                                 style={{
                                     width: 40,
@@ -320,7 +320,7 @@ function PetDetails({ navigation, route }) {
                             style={{ alignSelf: 'center', }}>
 
                             <Image
-                                source={require("../Images/pet_meal.jpg")}
+                                source={require("../../Images/pet_meal.jpg")}
                                 resizeMode='center'
                                 style={{
                                     width: 40,
@@ -336,7 +336,7 @@ function PetDetails({ navigation, route }) {
                             style={{ alignSelf: 'center', }}>
 
                             <Image
-                                source={require("../Images/cato.png")}
+                                source={require("../../Images/cato.png")}
                                 resizeMode='center'
                                 style={{
                                     width: 40,
@@ -352,7 +352,7 @@ function PetDetails({ navigation, route }) {
                             style={{ alignSelf: 'center', }}>
 
                             <Image
-                                source={require("../Images/gallery.png")}
+                                source={require("../../Images/gallery.png")}
                                 resizeMode='center'
                                 style={{
                                     width: 40,

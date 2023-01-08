@@ -3,6 +3,7 @@ import { View, Text, BackHandler, SafeAreaView, StyleSheet, Dimensions, Touchabl
 import AntDesign from 'react-native-vector-icons/AntDesign';
 let deviceWidth = Dimensions.get('window').width
 import { Picker } from '@react-native-picker/picker';
+import { HeaderLogo } from '../../Components/Logo';
 function handleBackButtonClick(navigation) {
     navigation.goBack();
     return true;
@@ -24,10 +25,7 @@ function Filter({ navigation }) {
     return (
         <View style={{ flex: 1 }}>
             <View style={{ width: '100%', marginTop: 10, flexDirection: 'row', justifyContent: 'center' }}>
-                <Image
-                    source={require("../Images/pet_hub.png")}
-                    resizeMode='stretch'
-                    style={{ height: 50, width: 100, alignSelf: 'center' }} />
+                <HeaderLogo />
 
             </View>
 

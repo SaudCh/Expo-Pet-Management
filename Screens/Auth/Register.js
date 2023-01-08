@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, ScrollView } from 'react-native'
+import { View, ScrollView } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import { TextInput, Button } from 'react-native-paper';
+import { AuthLogo } from '../../Components/Logo';
 
 function Register({ navigation }) {
     const [data, setData] = useState({
@@ -22,7 +23,7 @@ function Register({ navigation }) {
 
         axios.post('auth/register', data1)
             .then(function (response) {
-                console.log(response);
+                console.log(response.data);
                 if (response.data.status === 'pending') {
                     alert(response.data.message)
                     navigation.navigate("VerifyEmail", {
@@ -46,10 +47,7 @@ function Register({ navigation }) {
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, margin: 10 }}>
 
-                    <Image
-                        source={require("../Images/pet_hub.png")}
-                        resizeMode='stretch'
-                        style={{ marginTop: 60, height: 100, width: 150, alignSelf: 'center' }} />
+                    <AuthLogo />
 
                     <TextInput
                         mode='outlined'

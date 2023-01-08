@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react';
-import { View, StyleSheet, Image, ScrollView, TouchableOpacity, Text } from 'react-native'
+import React, { useState } from 'react';
+import { View, ScrollView, } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import { TextInput, Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import { AuthContext } from '../Components/AuthContext';
+import { AuthLogo } from '../../Components/Logo';
 
 function Register({ route }) {
     const navigation = useNavigation();
-    // console.log('user', route.params.user)
+    
     const [data, setData] = useState({
         userId: route.params.user.userId,
         otp: '',
@@ -41,10 +41,7 @@ function Register({ route }) {
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, margin: 10 }}>
 
-                    <Image
-                        source={require("../Images/pet_hub.png")}
-                        resizeMode='stretch'
-                        style={{ marginTop: 60, height: 100, width: 150, alignSelf: 'center' }} />
+                    <AuthLogo />
 
                     <TextInput
                         mode='outlined'

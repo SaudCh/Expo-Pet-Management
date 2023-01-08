@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, Platform, TextInput, Image, ScrollView, ScrollViewBase, StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { AuthContext } from '../Components/AuthContext';
+import { AuthContext } from '../../Components/Context/AuthContext';
 function Profile({ navigation }) {
 
     const { Logout } = React.useContext(AuthContext);
@@ -10,7 +10,7 @@ function Profile({ navigation }) {
         <View style={{ flex: 1, paddingTop: 36 }}>
             <View style={{ marginTop: 40, flexDirection: 'row', alignItems: "center", justifyContent: 'center' }}>
                 <Image
-                    source={require("../Images/tom.png")}
+                    source={require("../../Images/tom.png")}
                     resizeMode='stretch'
                     style={{ height: 100, width: 100, borderRadius: 100 / 2, alignSelf: 'center' }} />
                 <Text style={{ textAlign: 'center', fontSize: 20, fontWeight: 'bold', marginStart: 10 }}>KABEER</Text>

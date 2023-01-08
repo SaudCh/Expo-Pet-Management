@@ -3,9 +3,10 @@ import { View, Text, TouchableOpacity, Image, ScrollView, } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Button, TextInput } from 'react-native-paper';
 import axios from 'axios';
-import { AuthContext } from '../Components/AuthContext';
-import { WishlistContext } from '../Components/WishlistContext';
-import { CartContext } from '../Components/CartContext';
+import { AuthContext } from '../../Components/Context/AuthContext';
+import { WishlistContext } from '../../Components/Context/WishlistContext';
+import { CartContext } from '../../Components/Context/CartContext';
+import { AuthLogo } from '../../Components/Logo';
 
 
 function Login({ navigation, route }) {
@@ -54,10 +55,7 @@ function Login({ navigation, route }) {
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, margin: 10 }}>
 
-                    <Image
-                        source={require("../Images/pet_hub.png")}
-                        resizeMode='stretch'
-                        style={{ marginTop: 60, height: 100, width: 150, alignSelf: 'center' }} />
+                    <AuthLogo />
 
                     <TextInput
                         mode='outlined'

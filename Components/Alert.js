@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity,Dimensions, Platform, TextInput, Image, ScrollView, ScrollViewBase } from 'react-native'
+import { View, Text, TouchableOpacity, Dimensions, Platform, TextInput, Image, ScrollView, ScrollViewBase } from 'react-native'
 let deviceWidth = Dimensions.get('window').width
 
-function OrderComplete({ navigation }) {
+function Alert({ navigation }) {
     return (
         <View style={{ flex: 1, backgroundColor: 'white', justifyContent: 'center' }}>
 
@@ -26,4 +26,4 @@ function OrderComplete({ navigation }) {
     )
 }
 
-export default OrderComplete;
+export default Alert;

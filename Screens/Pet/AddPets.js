@@ -4,6 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import { TextInput, Button } from 'react-native-paper';
 import { Picker } from '@react-native-picker/picker';
+import { HeaderLogo } from '../../Components/Logo';
 
 function Register({ navigation }) {
     const [data, setData] = useState({
@@ -31,10 +32,7 @@ function Register({ navigation }) {
             <SafeAreaView style={{ flex: 1 }}>
                 <View style={{ flex: 1, margin: 10 }}>
 
-                    <Image
-                        source={require("../Images/pet_hub.png")}
-                        resizeMode='stretch'
-                        style={{ marginTop: 60, height: 100, width: 150, alignSelf: 'center' }} />
+                    <HeaderLogo />
 
                     <TextInput
                         mode='outlined'

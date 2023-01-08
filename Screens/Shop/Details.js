@@ -1,14 +1,20 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { View, BackHandler, SafeAreaView, Text, TouchableOpacity, Platform, TextInput, Image, ScrollView, ScrollViewBase } from 'react-native'
 import AntDesign from 'react-native-vector-icons/AntDesign';
-import { WishlistContext } from '../Components/WishlistContext';
+import { HeaderLogo } from '../../Components/Logo';
+import { CartContext } from '../../Components/Context/CartContext';
+import { WishlistContext } from '../../Components/Context/WishlistContext';
+import { AuthContext } from '../../Components/Context/AuthContext';
 function handleBackButtonClick(navigation) {
     navigation.goBack();
     return true;
 }
 function Details({ navigation, route }) {
-    const { product } = route?.params || {};
+    const { product } = route?.params;
+    const { user } = useContext(AuthContext)
     const { addToWishlist, inWishlist, removeFromWishlist } = useContext(WishlistContext)
+    const { addToCart } = useContext(CartContext)
+
 
     const inwish = inWishlist(product, 'shop')
     return (
@@ -19,10 +25,7 @@ function Details({ navigation, route }) {
                         <AntDesign name="arrowleft" color={'grey'} size={24} />
                     </TouchableOpacity>
 
-                    <Image
-                        source={require("../Images/pet_hub.png")}
-                        resizeMode='stretch'
-                        style={{ height: 50, width: 100, alignSelf: 'center' }} />
+                    <HeaderLogo />
 
                 </View>
 
@@ -33,15 +36,14 @@ function Details({ navigation, route }) {
 
 
                     <TouchableOpacity style={{ marginStart: 10 }}>
-
                         <AntDesign name="search1" color={'grey'} size={24} />
                     </TouchableOpacity>
 
 
-                    <TouchableOpacity style={{ marginStart: 10, marginEnd: 10 }}>
-
+                    <TouchableOpacity style={{ marginStart: 10, marginEnd: 10 }}
+                        onPress={() => { navigation.navigate("Cart") }}
+                    >
                         <AntDesign name="shoppingcart" color={'grey'} size={24} />
-
                     </TouchableOpacity>
 
                 </View>
@@ -93,22 +95,24 @@ function Details({ navigation, route }) {
             <View style={{ position: 'absolute', bottom: 10, right: 5, left: 5, flexDirection: 'row', justifyContent: 'space-evenly', marginBottom: 4 }}>
                 {
                     !inwish ?
-                        <TouchableOpacity style={{ width: 60, backgroundColor: "#54b325", justifyContent: 'center', alignItems: "center" }} onPress={() => addToWishlist(product, 'shop')}>
+                        <TouchableOpacity style={{ width: 60, backgroundColor: "#54b325", justifyContent: 'center', alignItems: "center" }} onPress={() => addToWishlist(product, 'shop', user._id)}>
                             <AntDesign name="hearto" color={'white'} size={30} />
                         </TouchableOpacity>
                         :
-                        <TouchableOpacity style={{ width: 60, backgroundColor: "#54b325", justifyContent: 'center', alignItems: "center" }} onPress={() => removeFromWishlist(product, 'shop')}>
+                        <TouchableOpacity style={{ width: 60, backgroundColor: "#54b325", justifyContent: 'center', alignItems: "center" }} onPress={() => removeFromWishlist(product, 'shop', user._id)}>
                             <AntDesign name="heart" color={'white'} size={30} />
                         </TouchableOpacity>
                 }
 
-                <TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => addToCart(product)}
+                >
                     <Text style={{ color: "white", textAlign: 'center', fontSize: 18, marginStart: 10, backgroundColor: '#f5b342', padding: 15, borderRadius: 5 }}>Add to Card</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => { navigation.navigate("AddCard") }}>
+                {/* <TouchableOpacity onPress={() => { navigation.navigate("AddCard") }}>
                     <Text style={{ color: "white", textAlign: 'center', fontSize: 18, marginStart: 10, backgroundColor: '#f5b342', padding: 15, borderRadius: 5, marginEnd: 10 }}>Buy Now</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </SafeAreaView>
 
