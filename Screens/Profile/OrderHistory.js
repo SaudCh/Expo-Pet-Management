@@ -2,29 +2,51 @@ import { FlatList, StyleSheet, Text, View, Image } from 'react-native'
 import React, { useContext, useEffect } from 'react'
 import axios from 'axios'
 import { AuthContext } from '../../Components/Context/AuthContext'
+import { useFocusEffect } from '@react-navigation/native'
 
 export default function OrderHistory() {
 
     const { user } = useContext(AuthContext)
     const [orderHistory, setOrderHistory] = React.useState([])
 
-    useEffect(() => {
-        // /order/show/user
-        const fetchOrderHistory = async () => {
-            await axios.post("shop/order/show/user", {
-                "userId": user._id
-            })
-                .then(function (response) {
-                    console.log(response.data);
-                    setOrderHistory(response.data.orders)
+    useFocusEffect(
+        React.useCallback(() => {
+            const fetchOrderHistory = async () => {
+                await axios.post("shop/order/show/user", {
+                    "userId": user._id
                 })
-                .catch(function (error) {
-                    console.log(error);
-                });
-        }
-        fetchOrderHistory()
 
-    }, [])
+                    .then(function (response) {
+                        console.log(response.data);
+                        setOrderHistory(response.data.orders)
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    }
+                    );
+            }
+            fetchOrderHistory()
+        }, [])
+
+    )
+
+    // useEffect(() => {
+    //     // /order/show/user
+    //     const fetchOrderHistory = async () => {
+    //         await axios.post("shop/order/show/user", {
+    //             "userId": user._id
+    //         })
+    //             .then(function (response) {
+    //                 console.log(response.data);
+    //                 setOrderHistory(response.data.orders)
+    //             })
+    //             .catch(function (error) {
+    //                 console.log(error);
+    //             });
+    //     }
+    //     fetchOrderHistory()
+
+    // }, [])
     return (
         <View>
             <FlatList

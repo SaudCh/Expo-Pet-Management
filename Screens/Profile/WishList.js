@@ -7,7 +7,7 @@ import { Button } from 'react-native-paper'
 
 export default function OrderHistory() {
     const { wishList, removeFromWishlist } = useContext(WishlistContext)
-    console.log(wishList)
+    
     return (
         <View>
             <FlatList

@@ -34,6 +34,11 @@ import OrderHistory from '../Screens/Profile/OrderHistory';
 
 import { AuthContext } from '../Components/Context/AuthContext';
 import Pay from '../Screens/Order/Pay';
+import Vacination from '../Screens/Pet/Update/Vacination';
+import Walk from '../Screens/Pet/Update/Walk';
+import Food from '../Screens/Pet/Update/Food';
+import Gallery from '../Screens/Pet/Update/Gallery';
+import Vet from '../Screens/Pet/Update/Vet';
 
 const Tab = createMaterialBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -61,6 +66,34 @@ export default function HomeStack() {
                     component={Details}
                     options={{ title: 'Details', headerShown: false }}
                 />
+
+                <Stack.Screen
+                    name="Vacination"
+                    component={Vacination}
+                    options={{ title: 'Add Vacination' }}
+                />
+                <Stack.Screen
+                    name="Walk"
+                    component={Walk}
+                    options={{ title: 'Add Walk' }}
+                />
+                <Stack.Screen
+                    name="Food"
+                    component={Food}
+                    options={{ title: 'Add Food' }}
+                />
+                <Stack.Screen
+                    name="Gallery"
+                    component={Gallery}
+                    options={{ title: 'Add Image' }}
+                />
+                <Stack.Screen
+                    name="Vet"
+                    component={Vet}
+                    options={{ title: 'Add Vet' }}
+                />
+
+
 
                 <Stack.Screen
                     name="Filter"

@@ -5,6 +5,7 @@ import { HeaderLogo } from '../../Components/Logo';
 import { CartContext } from '../../Components/Context/CartContext';
 import { WishlistContext } from '../../Components/Context/WishlistContext';
 import { AuthContext } from '../../Components/Context/AuthContext';
+import { Searchbar } from 'react-native-paper';
 function handleBackButtonClick(navigation) {
     navigation.goBack();
     return true;
@@ -30,14 +31,14 @@ function Details({ navigation, route }) {
                 </View>
 
                 <View style={{ marginBottom: 10, flexDirection: 'row', justifyContent: 'flex-end', alignSelf: 'flex-end' }}>
-                    <TouchableOpacity onPress={() => { navigation.navigate("Filter") }} style={{ marginStart: 10 }}>
+                    {/* <TouchableOpacity onPress={() => { navigation.navigate("Filter") }} style={{ marginStart: 10 }}>
                         <AntDesign name="filter" color={'grey'} size={24} />
                     </TouchableOpacity>
 
 
                     <TouchableOpacity style={{ marginStart: 10 }}>
                         <AntDesign name="search1" color={'grey'} size={24} />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
 
                     <TouchableOpacity style={{ marginStart: 10, marginEnd: 10 }}

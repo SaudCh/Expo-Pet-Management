@@ -8,6 +8,17 @@ let deviceWidth = Dimensions.get('window').width
 function AddCard({ navigation }) {
   const { cart, total, changeQuantity, removeFromCart } = useContext(CartContext);
 
+  if (cart.length == 0) {
+    return (
+      <SafeAreaView style={{ flex: 1 }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>No Items in Cart</Text>
+        </View>
+      </SafeAreaView>
+    )
+  }
+
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
 

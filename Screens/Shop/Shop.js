@@ -13,8 +13,12 @@ import React, { useState, useEffect } from 'react';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import axios from 'axios';
 import { HeaderLogo } from '../../Components/Logo';
+import { Searchbar } from 'react-native-paper';
 const Shop = ({ navigation }) => {
     const [Products, setProducts] = useState([]);
+    const [filterProducts, setFilterProducts] = useState([]);
+
+    const [search, setSearch] = useState('')
     useEffect(() => {
         fetchItem();
     }, []);
@@ -23,11 +27,23 @@ const Shop = ({ navigation }) => {
             .get("shop/show/all")
             .then((res) => {
                 setProducts(res.data.products);
+                setFilterProducts(res.data.products);
             })
             .catch((err) => {
                 console.log(err);
             });
     };
+
+    useEffect(() => {
+        setFilterProducts(
+            Products.filter((item) => {
+                return item.name.toLowerCase().includes(search.toLowerCase())
+            })
+        )
+    }, [search])
+
+
+    const width = Dimensions.get('screen').width / 2 - 8
 
     return (
         <SafeAreaView style={{ flex: 1, paddingTop: 37 }}>
@@ -35,17 +51,17 @@ const Shop = ({ navigation }) => {
                 <View style={{ width: '100%', flexDirection: 'row', justifyContent: 'center' }}>
                     <HeaderLogo />
                 </View>
-                <View style={{ marginBottom: 10, flexDirection: 'row', justifyContent: 'flex-end', alignSelf: 'flex-end' }}>
-                    <TouchableOpacity onPress={() => { navigation.navigate("Filter") }} style={{ marginStart: 10 }}>
+                <View style={{ marginBottom: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: "center" }}>
+                    <Searchbar
+                        style={{ width: 280, height: 40, borderRadius: 10, marginEnd: 10, backgroundColor: 'white' }}
+                        placeholder="Search"
+                        value={search}
+                        onChangeText={(text) => setSearch(text)}
+                    />
 
+                    {/* <TouchableOpacity onPress={() => { navigation.navigate("Filter") }} style={{ marginStart: 10 }}>
                         <AntDesign name="filter" color={'grey'} size={24} />
-                    </TouchableOpacity>
-
-
-                    <TouchableOpacity style={{ marginStart: 10 }}>
-                        <AntDesign name="search1" color={'grey'} size={24} />
-                    </TouchableOpacity>
-
+                    </TouchableOpacity> */}
 
                     <TouchableOpacity style={{ marginStart: 10, marginEnd: 10 }}
                         onPress={() => { navigation.navigate("Cart") }}
@@ -59,7 +75,7 @@ const Shop = ({ navigation }) => {
 
                 <FlatList
                     columnWrapperStyle={{ justifyContent: 'space-between', }}
-                    data={Products}
+                    data={filterProducts}
                     keyExtractor={item => item._id}
                     horizontal={false}
                     numColumns={2}

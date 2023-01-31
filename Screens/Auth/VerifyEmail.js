@@ -8,15 +8,31 @@ import { AuthLogo } from '../../Components/Logo';
 
 function Register({ route }) {
     const navigation = useNavigation();
-    
+
     const [data, setData] = useState({
-        userId: route.params.user.userId,
+        userID: route.params.user.userId,
         otp: '',
     })
 
     const handleRegister = async () => {
+
+        console.log('data', data)
+
+        await axios.post('shop/cart/new', {
+            userId: data.userID,
+        })
+            .then(function (response) {
+            })
+            .catch(function (error) {
+                console.log(error);
+                alert(error.message)
+                return
+            });
+
+
         await axios.post('auth/verifyOTP', data)
             .then(function (response) {
+
                 console.log(response.data);
                 if (response.data.status === 'success') {
                     alert(response.data.message)

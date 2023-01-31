@@ -110,14 +110,14 @@ export const useCart = () => {
   //   };
 
   //   getCart();
-
+  // 63a0b0822a3ade04b9fcfcf7
   // }, []);
 
   const getCart = async (id) => {
-    console.log(id);
     await axios.post("shop/cart/show", {
       userId: id
     }).then((res) => {
+      console.log(res.data.cart);
       setCart(res.data.cart[0].products);
       setCartId(res.data.cart[0]._id);
     }).catch((err) => {

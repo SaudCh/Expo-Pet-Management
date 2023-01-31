@@ -11,15 +11,18 @@ import { FlatList } from 'react-native-gesture-handler';
 import { AuthContext } from '../../Components/Context/AuthContext';
 import { Button } from 'react-native-paper';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import { useFocusEffect } from '@react-navigation/native';
 
 function AddItem({ navigation }) {
   const { user } = useContext(AuthContext)
   const data = { userId: user?._id };
   const [Pets, setPets] = useState([]);
 
-  useEffect(() => {
-    fetchItem();
-  }, []);
+  useFocusEffect(
+    React.useCallback(() => {
+      fetchItem();
+    }, [])
+  );
 
   const fetchItem = async () => {
     await axios

@@ -1,10 +1,10 @@
 {
   "expo": {
     "name": "pethub",
-    "slug": "my-app",
+    "slug": "pethub",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo.png",
     "scheme": "com.myapp.pethub",
     "userInterfaceStyle": "light",
     "splash": {
@@ -42,7 +42,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/icon.png",
+          "icon": "./assets/logo.png",
           "color": "#ffffff",
           "sounds": [
             "./local/assets/notification-sound.wav",

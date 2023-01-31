@@ -75,11 +75,11 @@ function Comunity({ navigation }) {
             }
 
             const nP = [...list]
-            setList([{ user: user, content: name, comments: [], likes: [], Image: img }, ...list])
+            setList([{ user: user, content: name, comments: [], likes: [], likes_count: 0, comments_count: 0, Image: img }, ...list])
 
 
             await axios.post("community/post", { content: name, userId: user._id, Image: image }).then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
             }).catch((err) => {
                 console.log(err);
                 setList(nP)
@@ -87,7 +87,7 @@ function Comunity({ navigation }) {
 
         } else {
             const nP = [...list]
-            setList([{ user: user, content: name, comments: [], likes: [], Image: "" }, ...list])
+            setList([{ user: user, content: name, comments: [], likes: [], likes_count: 0, comments_count: 0, Image: "" }, ...list])
 
 
             await axios.post("community/post", { content: name, userId: user._id, Image: "" }).then((res) => {
@@ -103,6 +103,19 @@ function Comunity({ navigation }) {
     }
 
 
+    const getCoummunity = async () => {
+        await axios.get("community/showAllPosts").then((res) => {
+            var response = res.data;
+            setList(res.data.data)
+            setShow(res.data.data.map((item) => {
+                return { status: false }
+            }))
+            console.log(response.data[0]);
+        }).catch((err) => {
+            console.log(err);
+        })
+
+    }
 
     useEffect(() => {
         const getCoummunity = async () => {
@@ -112,7 +125,7 @@ function Comunity({ navigation }) {
                 setShow(res.data.data.map((item) => {
                     return { status: false }
                 }))
-                // console.log(response.data[0].comments);
+                console.log(response.data[0]);
             }).catch((err) => {
                 console.log(err);
             })
@@ -128,7 +141,7 @@ function Comunity({ navigation }) {
 
         setList(list.map((item, i) => {
             if (i === index) {
-                return { ...item, comments: [...item.comments, { user: user, content: comment }] }
+                return { ...item, comments_count: item.comments_count + 1, comments: [...item.comments, { user: user, content: comment }] }
             } else {
                 return item;
             }
@@ -145,7 +158,7 @@ function Comunity({ navigation }) {
     const likePost = async (index, id) => {
         setList(list.map((item, i) => {
             if (i === index) {
-                return { ...item, likes: item.likes.filter((like) => like.userId !== user._id) }
+                return { ...item, likes_count: item.likes_count + 1, likes: [...item.likes, { userId: user._id }] }
             } else {
                 return item;
             }
@@ -161,7 +174,7 @@ function Comunity({ navigation }) {
     const unlikePost = async (index, id) => {
         setList(list.map((item, i) => {
             if (i === index) {
-                return { ...item, likes: [...item.likes, { userId: user._id }] }
+                return { ...item, likes_count: item.likes_count - 1, likes: item.likes.filter((like) => like.userId !== user._id) }
             } else {
                 return item;
             }
@@ -265,19 +278,37 @@ function Comunity({ navigation }) {
 
 
                                     <View style={{ elevation: 2, padding: 10, borderColor: "#DCDDDF", borderWidth: 1, flexDirection: 'row', justifyContent: 'space-around' }}>
-                                        {isLiked
+                                        {!isLiked
                                             ?
+                                            // unlike
                                             <TouchableOpacity onPress={() => {
                                                 likePost(index, item._id)
-                                            }}>
+                                            }}
+                                                style={{
+                                                    flexDirection: 'row',
+                                                    alignItems: 'center',
+
+                                                }}
+                                            >
                                                 < AntDesign name="like2" color={'grey'} size={24} />
-                                                <Text>Like</Text>
+                                                <Text style={{
+                                                    marginStart: 5
+                                                }}>{item.likes_count}</Text>
                                             </TouchableOpacity>
                                             :
                                             <TouchableOpacity onPress={() => {
                                                 unlikePost(index, item._id)
-                                            }}>
+                                            }}
+                                                style={{
+                                                    flexDirection: 'row',
+                                                    alignItems: 'center'
+                                                }}
+
+                                            >
                                                 < AntDesign name="like1" color={'grey'} size={24} />
+                                                <Text style={{
+                                                    marginStart: 5
+                                                }}>{item.likes_count}</Text>
                                             </TouchableOpacity>
 
                                         }
@@ -291,9 +322,18 @@ function Comunity({ navigation }) {
                                                     return { status: false }
                                                 }
                                             }))
-
-                                        }}>
+                                        }}
+                                            style={{
+                                                flexDirection: 'row',
+                                                alignItems: 'center'
+                                            }}
+                                        >
                                             <MaterialCommunityIcons name="message-reply-outline" color={'grey'} size={24} />
+                                            <Text
+                                                style={{
+                                                    marginStart: 5,
+                                                }}
+                                            >{item.comments_count}</Text>
                                         </TouchableOpacity>
 
 

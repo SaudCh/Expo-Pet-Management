@@ -21,10 +21,10 @@ function Login({ navigation, route }) {
 
     const handleSubmit = async () => {
 
-        var data = {
-            email: "kabeerahmadofficial@gmail.com",
-            password: "Smaku-05"
-        }
+        // var data = {
+        //     email: "kabeerahmadofficial@gmail.com",
+        //     password: "Smaku-05"
+        // }
 
         await axios.post('auth/login', data).then((res) => {
             console.log('response', res.data)
@@ -44,7 +44,7 @@ function Login({ navigation, route }) {
                 navigation.replace("Home", { user: res.data.user })
             }
         }).catch((err) => {
-            console.log('error', err)
+            console.log('error', err.message)
             alert('error', err.message)
         })
 
@@ -75,9 +75,9 @@ function Login({ navigation, route }) {
                         secureTextEntry
                         placeholder="Password"
                     />
-                    <TouchableOpacity>
+                    {/* <TouchableOpacity>
                         <Text style={{ marginTop: 10, fontWeight: 'bold', color: "black", textAlign: 'right' }}>Forget Password?</Text>
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
 
                     <View style={{ alignSelf: 'center', marginBottom: 10, marginTop: 30 }}>
                         <Button
